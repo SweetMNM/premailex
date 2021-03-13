@@ -56,11 +56,6 @@ defmodule Premailex.HTMLInlineStyles do
 
   defp apply_styles(styles, html_tree) do
     html_tree
-    |> HTMLParser.all("body")
-    |> case do
-      []   -> html_tree
-      body -> body
-    end
     |> List.wrap()
     |> Enum.reduce(html_tree, fn body_or_html_tree, html_tree ->
       Util.traverse_until_first(html_tree, body_or_html_tree, fn tree ->
